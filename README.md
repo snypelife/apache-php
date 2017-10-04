@@ -6,7 +6,7 @@ Docker image with Apache2 web server and PHP based on the official Debian Jessie
 
 - Apache 2.4 web server 
 - HTTPS/SSL enabled
-- PHP 5.6
+- PHP 7
 - logging enabled
 - all original Debian Packages (not compiled from source)
 - this image automatically updates on Docker Hub, each time the Debian image is updated
@@ -38,7 +38,7 @@ docker run -d --name=apache-php \
 --restart=always \
 -p 80:80 -p 443:443 \
 -v "$PWD/html":/var/www/html \
-chriswayg/apache-php
+snypelife/apache-php
 ```
 
 ### Alternatively create a `Dockerfile` for your project
@@ -47,9 +47,9 @@ The `./html/` directory contains all your php files and the `./config/` director
 
 `Dockerfile`
 ```
-FROM chriswayg/apache-php
+FROM snypelife/apache-php
 COPY ./html/ /var/www/html/
-COPY ./config/php.ini /etc/php5/apache2/
+COPY ./config/php.ini /etc/php7.0/apache2/
 ```
 
 Then, run the commands to build and run the Docker image:
@@ -66,16 +66,16 @@ By default, Apache will use the Debian generated "snakeoil" key when serving SSL
 
 ### Directories with important data:
 
-Copy or mount needed data for these directories as described above or use [Data Volume Containers](https://docs.docker.com/userguide/dockervolumes/) to store the data.
+Copy or mount needed data for these directories as described above or use [Data Volume Containers](https://docs.docker.com/engine/admin/volumes/volumes/) to store the data.
 
 * Webroot: `/var/www/html/`
 * Apache2 config: `/etc/apache2/`
 * SSL: `/etc/ssl/`
-* PHP: `/etc/php5/apache2/php.ini`
+* PHP: `/etc/php7.0/apache2/php.ini`
 
 ### Used by Concrete5.7 CMS Docker Image
 
-See how this image is used as the base of my [Concrete5.7 CMS Docker Image](https://hub.docker.com/r/chriswayg/concrete5.7/) and the corresponding Github repository here: https://github.com/chriswayg/concrete5.7
+See how this image is used as the base of my [Concrete5.7 CMS Docker Image](https://hub.docker.com/r/snypelife/concrete5.7/) and the corresponding Github repository here: https://github.com/snypelife/concrete5.7
 
 ---
 ###### License:
